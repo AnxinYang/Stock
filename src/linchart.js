@@ -27,15 +27,33 @@ function LineChart(options = {}) {
         .call(d3.axisBottom(x));
 
     // Add Y axis
+    let dataMax;
+    let dataMin;
+    yKeys.forEach(function (key) {
+        let setMax = d3.max(data, function (d) {
+            return +d[key];
+        });
+        let setMin = d3.min(data, function (d) {
+            return +d[key];
+        });
+        if (dataMax) {
+            dataMax = Math.max(dataMax, setMax);
+        } else {
+            dataMax = setMax;
+        }
+        if (dataMin) {
+            dataMin = Math.min(dataMin, setMin);
+        } else {
+            dataMin = setMin;
+        }
+    });
     let y = d3.scaleLinear()
-        .domain([0, d3.max(data, function (d) {
-            return +d.value;
-        })])
+        .domain([dataMin, dataMax])
         .range([height, 0]);
     let yAxis = svg.append("g")
         .call(d3.axisLeft(y));
 
-    // Add a clipPath: everything out of this area won't be drawn.
+
     let clip = svg.append("defs").append("svg:clipPath")
         .attr("id", "clip")
         .append("svg:rect")
@@ -44,12 +62,12 @@ function LineChart(options = {}) {
         .attr("x", 0)
         .attr("y", 0);
 
-    //Add brushing
-    let brush = d3.brushX()                   // Add the brush feature using the d3.brush function
-        .extent([[0, 0], [width, height]])  // initialise the brush area: start at 0,0 and finishes at width,height: it means I select the whole graph area
-        .on("end", updateChart);               // Each time the brush selection changes, trigger the 'updateChart' function
 
-    // Create the line variable: where both the line and the brush take place
+    let brush = d3.brushX()
+        .extent([[0, 0], [width, height]])
+        .on("end", updateChart);
+
+
     let line = svg.append('g')
         .attr("clip-path", "url(#clip)");
 
@@ -57,84 +75,78 @@ function LineChart(options = {}) {
     yKeys.forEach(function (key) {
         line.append("path")
             .datum(data)
-            .attr("class", `link_${key}`)
+            .attr("class", "line_"+ key)
             .attr("fill", "none")
             .attr("stroke", "steelblue")
             .attr("stroke-width", 1.5)
             .attr("d", d3.line()
+                .curve(d3.curveMonotoneX)
                 .x(function (d) {
-                    return x(d[xKey])
+                    return x(d[xKey]);
                 })
                 .y(function (d) {
-                    return y(d.value)
+                    return y(+d[key]);
                 })
             );
     });
 
-    // Add the brushing
     line
         .append("g")
         .attr("class", "brush")
         .call(brush);
 
-    // A function that set idleTimeOut to null
     let idleTimeout;
 
     function idled() {
         idleTimeout = null;
     }
 
-    // A function that update the chart for given boundaries
     function updateChart() {
-
-        // What are the selected boundaries?
         let extent = d3.event.selection;
-        // If no selection, back to initial coordinate. Otherwise, update X axis domain
+
         if (extent) {
             x.domain([x.invert(extent[0]), x.invert(extent[1])]);
-            line.select(".brush").call(brush.move, null) // This remove the grey brush area as soon as the selection has been done
+            line.select(".brush").call(brush.move, null);
         }
 
-        // Update axis and line position
         xAxis.transition().duration(1000).call(d3.axisBottom(x));
         yKeys.forEach(function (key) {
             line
-                .select(`.line_${key}`)
+                .select('.line_'+key)
                 .transition()
                 .duration(1000)
                 .attr("d", d3.line()
+                    .curve(d3.curveMonotoneX)
                     .x(function (d) {
                         return x(d[xKey])
                     })
                     .y(function (d) {
-                        return y(d[key])
+                        return y(+d[key]);
                     })
                 )
-        });
-
+        })
     }
 
-    // If user double click, reinitialize the chart
     svg.on("dblclick", function () {
         x.domain(d3.extent(data, function (d) {
             return d[xKey];
         }));
         xAxis.transition().call(d3.axisBottom(x));
         yKeys.forEach(function (key) {
-            debugger
             line
                 .select(`.line_${key}`)
                 .transition()
-                .duration(1000)
                 .attr("d", d3.line()
+                    .curve(d3.curveMonotoneX)
                     .x(function (d) {
                         return x(d[xKey])
                     })
                     .y(function (d) {
-                        return y(d[key])
+                        return y(+d[key]);
                     })
                 )
         });
+
     });
 }
 
