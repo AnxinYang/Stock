@@ -1,0 +1,62 @@
+//  Size
+$size-super:    128px;
+$size-large:    64px;
+$size-medium:   32px;
+$size-normal:   16px;
+$size-smaller:  12px;
+$size-small:    8px;
+$size-tiny:     4px;
+
+//  Color
+$black:       rgb(8, 8, 8);
+$black-light: rgb(16, 16, 16);
+$black-dark:  rgb(0, 0, 0);
+
+$grey:        rgb(99, 110, 114);
+
+$white:       rgb(255,255,255);
+$white-dark:  rgb(235,235,235);
+
+$red:         rgb(214, 48, 50);
+$red-light:   rgb(255, 87, 89);
+$red-dark:    rgb(112, 24, 25);
+
+$green:       rgb(0, 184, 148);
+
+$blue:        rgb(9, 132, 227);
+
+//  Font
+.font-common{
+  font-family: Arial;
+}
+.font-size-large{
+  font-size: $size-large;
+}
+.font-size-medium{
+  font-size: $size-medium;
+}
+.font-size-normal{
+  font-size: $size-normal;
+}
+.font-size-smaller{
+  font-size: $size-smaller;
+}
+.font-size-small{
+  font-size: $size-small;
+}
+.font-color-normal{
+  color: $black;
+}
+
+//  Shadow
+.box-shadow{
+  box-shadow: 0 0 $size-tiny 0 $grey;
+}
+.box-shadow-higher{
+  box-shadow: 0 0 $size-small 0 $grey;
+}
+.text-shadow{
+  text-shadow: 0 0 1px;
+}
+
+

@@ -1,0 +1,118 @@
+.font-common, body {
+  font-family: Arial;
+}
+
+.font-size-large {
+  font-size: 64px;
+}
+
+.font-size-medium {
+  font-size: 32px;
+}
+
+.font-size-normal, body {
+  font-size: 16px;
+}
+
+.font-size-smaller {
+  font-size: 12px;
+}
+
+.font-size-small {
+  font-size: 8px;
+}
+
+.font-color-normal {
+  color: #080808;
+}
+
+.box-shadow {
+  box-shadow: 0 0 4px 0 #636e72;
+}
+
+.box-shadow-higher {
+  box-shadow: 0 0 8px 0 #636e72;
+}
+
+.text-shadow {
+  text-shadow: 0 0 1px;
+}
+
+/* SCROLL BAR/
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+  transition: 0.3s;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 4px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 6px;
+  transition: 0.3s;
+  background: lightgray;
+  opacity: 0.3;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #636e72;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: white;
+  text-align: center;
+}
+
+.font-common, body {
+  font-family: Arial;
+}
+
+.font-size-large {
+  font-size: 64px;
+}
+
+.font-size-medium {
+  font-size: 32px;
+}
+
+.font-size-normal, body {
+  font-size: 16px;
+}
+
+.font-size-smaller {
+  font-size: 12px;
+}
+
+.font-size-small {
+  font-size: 8px;
+}
+
+.font-color-normal {
+  color: #080808;
+}
+
+.box-shadow {
+  box-shadow: 0 0 4px 0 #636e72;
+}
+
+.box-shadow-higher {
+  box-shadow: 0 0 8px 0 #636e72;
+}
+
+.text-shadow {
+  text-shadow: 0 0 1px;
+}
+
+/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,40 @@
+@import "utils";
+// SETUP ENV
+
+/* SCROLL BAR/
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+  transition: 0.3s;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 4px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 6px;
+  transition: 0.3s;
+  background: lightgray;
+  opacity: 0.3;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $grey;
+}
+
+*{
+  box-sizing: border-box;
+  margin:     0;
+  padding:    0;
+}
+body{
+  @extend .font-common;
+  @extend .font-size-normal;
+  background-color: $white;
+  text-align:       center;
+}
