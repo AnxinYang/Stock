@@ -1,2 +1,7 @@
 @import "common/general";
 @import "common/utils";
+.zoom {
+  cursor: move;
+  fill: none;
+  pointer-events: all;
+}

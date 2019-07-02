@@ -115,4 +115,10 @@ body {
   text-shadow: 0 0 1px;
 }
 
+.zoom {
+  cursor: move;
+  fill: none;
+  pointer-events: all;
+}
+
 /*# sourceMappingURL=main.css.map */
